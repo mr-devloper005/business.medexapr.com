@@ -188,26 +188,33 @@ function EditorialArchive({
 
   return (
     <EditableSiteShell>
-      <main className="min-h-screen bg-[#f7f4ef] text-[#111]">
-        <section className="border-b border-black bg-white">
-          <div className="mx-auto flex max-w-[var(--editable-container)] flex-col gap-6 px-4 py-10 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 lg:py-14">
+      <main className="min-h-screen bg-[#fff8ea] text-[#08172f]">
+        <section className="astra-gradient relative overflow-hidden text-white">
+          <span className="hero-mark" aria-hidden="true" />
+          <div className="relative mx-auto flex max-w-[var(--editable-container)] flex-col gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 lg:py-24">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#c92f2f]">The newsroom</p>
-              <h1 className="editorial-brand mt-3 text-6xl font-black leading-none tracking-[-0.055em] sm:text-7xl lg:text-8xl">
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--slot4-accent)]">Media distribution library</p>
+              <h1 className="mt-5 max-w-5xl text-5xl font-black leading-tight tracking-[-0.045em] sm:text-7xl">
                 {category === 'all' ? label : categoryLabel}
               </h1>
+              <p className="mt-6 max-w-2xl text-base font-medium leading-8 text-white/82">Search fresh releases, media updates, announcements, and reputation-building stories in one polished archive.</p>
             </div>
-            <p className="max-w-md border-l-4 border-[#c92f2f] pl-5 text-sm font-bold leading-7 text-black/65">
-              Timely reporting, sharp perspectives, and media-ready stories organized for fast discovery.
-            </p>
+            <form action={basePath} className="rounded-[1.4rem] border border-white/18 bg-white/12 p-4 backdrop-blur lg:w-[360px]">
+              <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-white/70"><Filter className="h-4 w-4" /> Filter releases</div>
+              <select name="category" defaultValue={category} className="mt-4 h-12 w-full rounded-full border border-white/20 bg-white px-4 text-sm font-bold text-[#08172f] outline-none">
+                <option value="all">All categories</option>
+                {categories.map((item) => <option key={item.slug} value={item.slug}>{item.name}</option>)}
+              </select>
+              <button className="mt-3 h-12 w-full rounded-full bg-[var(--slot4-accent)] text-sm font-black text-[#08172f]">Apply filter</button>
+            </form>
           </div>
         </section>
 
-        <section className="border-b border-black bg-[#171717] text-white">
-          <div className="mx-auto flex max-w-[var(--editable-container)] gap-7 overflow-x-auto px-4 py-4 text-xs font-black uppercase tracking-[0.16em] sm:px-6 lg:px-8">
-            <Link href={basePath} className={category === 'all' ? 'text-[#f34a43]' : 'hover:text-[#f34a43]'}>Latest</Link>
+        <section className="border-b border-[#e7e0f2] bg-white">
+          <div className="mx-auto flex max-w-[var(--editable-container)] gap-3 overflow-x-auto px-4 py-5 text-xs font-black uppercase tracking-[0.12em] sm:px-6 lg:px-8">
+            <Link href={basePath} className={`whitespace-nowrap rounded-full px-4 py-2 ${category === 'all' ? 'bg-[#6d00df] text-white' : 'bg-[#f1e8ff] text-[#6d00df] hover:bg-[#6d00df] hover:text-white'}`}>Latest</Link>
             {categories.slice(0, 8).map((item) => (
-              <Link key={item.slug} href={pageHref(basePath, item.slug, 1)} className={category === item.slug ? 'text-[#f34a43]' : 'whitespace-nowrap hover:text-[#f34a43]'}>
+              <Link key={item.slug} href={pageHref(basePath, item.slug, 1)} className={`whitespace-nowrap rounded-full px-4 py-2 ${category === item.slug ? 'bg-[#6d00df] text-white' : 'bg-[#f1e8ff] text-[#6d00df] hover:bg-[#6d00df] hover:text-white'}`}>
                 {item.name}
               </Link>
             ))}
@@ -215,27 +222,27 @@ function EditorialArchive({
         </section>
 
         {lead ? (
-          <section className="mx-auto grid max-w-[var(--editable-container)] border-x border-black bg-white lg:grid-cols-[1.75fr_0.75fr]">
-            <Link href={`${basePath}/${lead.slug}`} className="group relative min-h-[34rem] overflow-hidden border-b border-black lg:border-b-0 lg:border-r">
+          <section className="mx-auto grid max-w-[var(--editable-container)] gap-6 px-4 py-12 sm:px-6 lg:grid-cols-[1.55fr_.75fr] lg:px-8">
+            <Link href={`${basePath}/${lead.slug}`} className="group relative min-h-[34rem] overflow-hidden rounded-[1.6rem] bg-[#100033] shadow-[0_26px_80px_rgba(70,0,160,.18)]">
               <img src={getImage(lead)} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#100033] via-[#100033]/25 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-9">
-                <span className="bg-[#c92f2f] px-3 py-2 text-[10px] font-black uppercase tracking-[0.2em]">{getCategory(lead, label)}</span>
-                <h2 className="editorial-serif mt-5 max-w-4xl text-4xl font-black leading-[0.98] tracking-[-0.045em] sm:text-6xl">{lead.title}</h2>
+                <span className="rounded-full bg-[var(--slot4-accent)] px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#08172f]">{getCategory(lead, label)}</span>
+                <h2 className="mt-5 max-w-4xl text-4xl font-black leading-tight tracking-[-0.045em] sm:text-6xl">{lead.title}</h2>
                 <p className="mt-5 max-w-2xl line-clamp-2 text-sm font-semibold leading-7 text-white/80">{getSummary(lead)}</p>
               </div>
             </Link>
-            <div className="grid">
-              <div className="border-b border-black bg-[#c92f2f] p-6 text-white">
+            <div className="grid gap-5">
+              <div className="rounded-[1.4rem] bg-[#6d00df] p-6 text-white">
                 <p className="text-xs font-black uppercase tracking-[0.24em]">Top stories</p>
-                <p className="editorial-serif mt-3 text-3xl font-black leading-tight">What the newsroom is watching now.</p>
+                <p className="mt-3 text-3xl font-black leading-tight tracking-[-.035em]">What the network is watching now.</p>
               </div>
               {secondary.map((post, index) => (
-                <Link key={post.id || post.slug} href={`${basePath}/${post.slug}`} className="group grid grid-cols-[7rem_1fr] border-b border-black bg-white last:border-b-0">
-                  <img src={getImage(post)} alt="" className="h-full min-h-40 w-full object-cover grayscale transition group-hover:grayscale-0" />
+                <Link key={post.id || post.slug} href={`${basePath}/${post.slug}`} className="group grid grid-cols-[7rem_1fr] overflow-hidden rounded-[1.4rem] border border-[#ded4f1] bg-white shadow-sm">
+                  <img src={getImage(post)} alt="" className="h-full min-h-40 w-full object-cover transition group-hover:scale-105" />
                   <div className="p-5">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#c92f2f]">0{index + 1}</p>
-                    <h3 className="editorial-serif mt-3 text-xl font-black leading-tight">{post.title}</h3>
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#6d00df]">0{index + 1}</p>
+                    <h3 className="mt-3 text-xl font-black leading-tight tracking-[-.03em]">{post.title}</h3>
                   </div>
                 </Link>
               ))}
@@ -243,47 +250,47 @@ function EditorialArchive({
           </section>
         ) : null}
 
-        <section className="mx-auto max-w-[var(--editable-container)] border-x border-black bg-[#f7f4ef] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-5 border-b-4 border-black pb-4">
-            <h2 className="editorial-brand text-4xl font-black tracking-[-0.04em] sm:text-5xl">More from the desk</h2>
-            <form action={basePath} className="flex border border-black bg-white">
-              <select name="category" defaultValue={category} className="h-11 min-w-44 bg-transparent px-3 text-xs font-black uppercase outline-none">
+        <section className="mx-auto max-w-[var(--editable-container)] px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
+            <h2 className="text-4xl font-black tracking-[-0.04em] sm:text-5xl">More from the desk</h2>
+            <form action={basePath} className="flex rounded-full border border-[#ded4f1] bg-white shadow-sm">
+              <select name="category" defaultValue={category} className="h-11 min-w-44 bg-transparent px-4 text-xs font-black uppercase outline-none">
                 <option value="all">All categories</option>
                 {categories.map((item) => <option key={item.slug} value={item.slug}>{item.name}</option>)}
               </select>
-              <button className="h-11 bg-black px-5 text-xs font-black uppercase tracking-[0.14em] text-white">Filter</button>
+              <button className="m-1 rounded-full bg-[#100033] px-5 text-xs font-black uppercase tracking-[0.12em] text-white">Filter</button>
             </form>
           </div>
 
           {remaining.length ? (
-            <div className="grid border-l border-t border-black md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {remaining.map((post, index) => (
-                <Link key={post.id || post.slug} href={`${basePath}/${post.slug}`} className="group border-b border-r border-black bg-white">
-                  <div className="aspect-[16/10] overflow-hidden bg-black">
+                <Link key={post.id || post.slug} href={`${basePath}/${post.slug}`} className="group overflow-hidden rounded-[1.5rem] border border-[#ded4f1] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(70,0,160,.16)]">
+                  <div className="aspect-[16/10] overflow-hidden bg-[#efe8ff]">
                     <img src={getImage(post)} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-5">
-                    <div className="flex items-center justify-between gap-4 text-[10px] font-black uppercase tracking-[0.18em] text-[#c92f2f]">
+                    <div className="flex items-center justify-between gap-4 text-[10px] font-black uppercase tracking-[0.18em] text-[#6d00df]">
                       <span>{getCategory(post, label)}</span><span>{String(index + 3).padStart(2, '0')}</span>
                     </div>
-                    <h3 className="editorial-serif mt-4 text-2xl font-black leading-[1.05]">{post.title}</h3>
-                    <p className="mt-4 line-clamp-3 text-sm leading-6 text-black/60">{getSummary(post)}</p>
+                    <h3 className="mt-4 text-2xl font-black leading-tight tracking-[-.035em]">{post.title}</h3>
+                    <p className="mt-4 line-clamp-3 text-sm leading-6 text-[#465166]">{getSummary(post)}</p>
                   </div>
                 </Link>
               ))}
             </div>
           ) : !lead ? (
-            <div className="border border-dashed border-black bg-white p-12 text-center">
+            <div className="rounded-[1.6rem] border border-dashed border-[#ded4f1] bg-white p-12 text-center">
               <Search className="mx-auto h-8 w-8" />
-              <h2 className="editorial-serif mt-4 text-3xl font-black">No stories found</h2>
-              <p className="mt-2 text-sm text-black/60">Try another category or publish a new newsroom story.</p>
+              <h2 className="mt-4 text-3xl font-black">No stories found</h2>
+              <p className="mt-2 text-sm text-[#465166]">Try another category or publish a new media update.</p>
             </div>
           ) : null}
 
           <div className="mt-10 flex items-center justify-center gap-0">
-            {pagination.hasPrevPage ? <Link href={pageHref(basePath, category, page - 1)} className="border border-black bg-white px-5 py-3 text-xs font-black uppercase">Previous</Link> : null}
-            <span className="border-y border-black bg-[#c92f2f] px-5 py-3 text-xs font-black uppercase text-white">Page {page} / {pagination.totalPages || 1}</span>
-            {pagination.hasNextPage ? <Link href={pageHref(basePath, category, page + 1)} className="border border-black bg-white px-5 py-3 text-xs font-black uppercase">Next</Link> : null}
+            {pagination.hasPrevPage ? <Link href={pageHref(basePath, category, page - 1)} className="rounded-l-full border border-[#ded4f1] bg-white px-5 py-3 text-xs font-black uppercase">Previous</Link> : null}
+            <span className="bg-[#6d00df] px-5 py-3 text-xs font-black uppercase text-white">Page {page} / {pagination.totalPages || 1}</span>
+            {pagination.hasNextPage ? <Link href={pageHref(basePath, category, page + 1)} className="rounded-r-full border border-[#ded4f1] bg-white px-5 py-3 text-xs font-black uppercase">Next</Link> : null}
           </div>
         </section>
       </main>
