@@ -11,18 +11,18 @@ export type Slot4VisualPreset =
 
 export const visualPresets = {
   'editorial-paper': {
-    label: 'Editorial Paper',
-    mood: 'calm magazine authority',
-    fontDirection: 'serif headlines with quiet sans body',
+    label: 'Media Launch',
+    mood: 'bright distribution platform',
+    fontDirection: 'bold rounded sans with clear body text',
     colors: {
-      background: '#f7f4ef',
-      foreground: '#111111',
-      muted: '#66615b',
-      primary: '#111111',
-      accent: '#c92f2f',
+      background: '#fff8ea',
+      foreground: '#08172f',
+      muted: '#465166',
+      primary: '#100033',
+      accent: '#6d00df',
       surface: '#ffffff',
     },
-    shape: 'sharp newsroom modules with black rules and red feature bands',
+    shape: 'rounded platform cards, purple gradients, and yellow action pills',
   },
   'luxury-atelier': {
     label: 'Luxury Atelier',
@@ -121,10 +121,10 @@ export const visualSystem = {
           ? 'tech-directory'
           : 'organic-journal',
   radius: {
-    sm: '0rem',
-    md: '0rem',
-    lg: '0rem',
-    xl: '0rem',
+    sm: '0.75rem',
+    md: '1rem',
+    lg: '1.25rem',
+    xl: '1.6rem',
   },
   motion: {
     pageLoad: 'animate-in fade-in slide-in-from-bottom-4 duration-700',
@@ -134,8 +134,8 @@ export const visualSystem = {
   },
   typography: {
     eyebrow: 'text-xs font-semibold uppercase tracking-[0.24em]',
-    heroTitle: 'text-5xl font-semibold tracking-[-0.06em] sm:text-6xl lg:text-7xl',
-    sectionTitle: 'text-3xl font-semibold tracking-[-0.04em] sm:text-4xl',
+    heroTitle: 'text-5xl font-black tracking-[-0.045em] sm:text-6xl lg:text-7xl',
+    sectionTitle: 'text-3xl font-black tracking-[-0.04em] sm:text-4xl',
     body: 'text-base leading-8',
     caption: 'text-xs font-medium uppercase tracking-[0.18em]',
   },
